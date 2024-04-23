@@ -1,11 +1,7 @@
 #!/bin/bash
 
 venvs=(
-    "torch"
-    "tensorflow"
-    "keras-tensorflow"
     "keras-jax"
-    "keras-torch"
 )
 
 for ((i=0; i<${#venvs[@]}; i++)); do

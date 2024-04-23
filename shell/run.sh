@@ -2,11 +2,7 @@
 
 venv_path=~/.venv
 venvs=(
-    "torch"
-    "tensorflow"
-    "keras-tensorflow"
     "keras-jax"
-    "keras-torch"
 )
 output_file=results.txt
 
@@ -17,11 +13,11 @@ fi
 export LD_LIBRARY_PATH=
 
 models=(
-    "bert"
-    "sam"
     "stable_diffusion"
+    "sam"
     "gemma"
     "mistral"
+    "bert"
 )
 
 for venv_name in "${venvs[@]}"; do
