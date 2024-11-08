@@ -38,21 +38,14 @@ def append_to_file(file_path, content):
         print(f"Error: File '{file_path}' not found.")
 
 
-def benchmark(run):
-    if len(sys.argv) not in (2, 3):
-        print("Usage: python bert/fit.py <file_path> [batch_size]")
+def benchmark(run, batch_size=None):
+    if batch_size is not None:
+        per_step = run(batch_size=batch_size)
+        content = f"{1000*batch_size/per_step} examples/s\n"
     else:
-        if len(sys.argv) == 3:
-            batch_size = int(sys.argv[2])
-            per_step = run(batch_size=batch_size)
-            content = f"{1000*batch_size/per_step} examples/s\n"
-        else:
-            per_step = run()
-            content = f"{per_step} ms/step\n"
-        print(content)
-        file_path = sys.argv[1]
-        append_to_file(file_path, content)
-
+        per_step = run()
+        content = f"{per_step} ms/step\n"
+    print(content)
 
 def get_prompts(num_prompts, num_words):
     dictionary = (
